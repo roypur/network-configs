@@ -1,0 +1,115 @@
+config-file-header
+helium
+v1.4.7.5 / R800_NIK_1_4_194_194
+CLI v1.0
+set system mode switch 
+
+file SSD indicator excluded
+@
+vlan database
+vlan 5 
+exit
+voice vlan oui-table add 0001e3 Siemens_AG_phone________
+voice vlan oui-table add 00036b Cisco_phone_____________
+voice vlan oui-table add 00096e Avaya___________________
+voice vlan oui-table add 000fe2 H3C_Aolynk______________
+voice vlan oui-table add 0060b9 Philips_and_NEC_AG_phone
+voice vlan oui-table add 00d01e Pingtel_phone___________
+voice vlan oui-table add 00e075 Polycom/Veritel_phone___
+voice vlan oui-table add 00e0bb 3Com_phone______________
+no boot host auto-config 
+no boot host auto-update 
+ip access-list extended drop-dhcp
+deny udp any any any bootpc ace-priority 100 log-input
+exit
+hostname helium
+no passwords complexity enable 
+username cisco password encrypted 7af78c911d5b48bea1dc2449d9d89513abeb4be5 privilege 15 
+ip ssh server
+!
+interface vlan 1
+ ip address 192.168.0.2 255.255.255.0 
+ no ip address dhcp 
+!
+interface vlan 5
+ name guest-wifi 
+!
+interface gigabitethernet1
+ service-acl input drop-dhcp default-action permit-any 
+ switchport forbidden vlan add 5 
+!
+interface gigabitethernet2
+ service-acl input drop-dhcp default-action permit-any 
+ switchport forbidden vlan add 5 
+!
+interface gigabitethernet3
+ service-acl input drop-dhcp default-action permit-any 
+ switchport forbidden vlan add 5 
+!
+interface gigabitethernet4
+ service-acl input drop-dhcp default-action permit-any 
+ switchport forbidden vlan add 5 
+!
+interface gigabitethernet5
+ service-acl input drop-dhcp default-action permit-any 
+ switchport forbidden vlan add 5 
+!
+interface gigabitethernet6
+ service-acl input drop-dhcp default-action permit-any 
+ switchport forbidden vlan add 5 
+!
+interface gigabitethernet7
+ service-acl input drop-dhcp default-action permit-any 
+ switchport forbidden vlan add 5 
+!
+interface gigabitethernet8
+ service-acl input drop-dhcp default-action permit-any 
+ switchport forbidden vlan add 5 
+!
+interface gigabitethernet9
+ service-acl input drop-dhcp default-action permit-any 
+ switchport forbidden vlan add 5 
+!
+interface gigabitethernet10
+ service-acl input drop-dhcp default-action permit-any 
+ switchport forbidden vlan add 5 
+!
+interface gigabitethernet11
+ service-acl input drop-dhcp default-action permit-any 
+ switchport forbidden vlan add 5 
+!
+interface gigabitethernet12
+ service-acl input drop-dhcp default-action permit-any 
+ switchport forbidden vlan add 5 
+!
+interface gigabitethernet13
+ service-acl input drop-dhcp default-action permit-any 
+ switchport forbidden vlan add 5 
+!
+interface gigabitethernet14
+ service-acl input drop-dhcp default-action permit-any 
+ switchport forbidden vlan add 5 
+!
+interface gigabitethernet15
+ service-acl input drop-dhcp default-action permit-any 
+ switchport trunk allowed vlan add 5 
+!
+interface gigabitethernet16
+ service-acl input drop-dhcp default-action permit-any 
+ switchport trunk allowed vlan add 5 
+!
+interface gigabitethernet17
+ service-acl input drop-dhcp default-action permit-any 
+ switchport trunk allowed vlan add 5 
+!
+interface gigabitethernet18
+ service-acl input drop-dhcp default-action permit-any 
+ switchport trunk allowed vlan add 5 
+!
+interface gigabitethernet19
+ switchport trunk allowed vlan add 5 
+!
+interface gigabitethernet20
+ switchport trunk allowed vlan add 5 
+!
+exit
