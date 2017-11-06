@@ -6,6 +6,7 @@ set system mode switch
 
 file SSD indicator excluded
 @
+spanning-tree loopback-guard
 vlan database
 vlan 5 
 exit
