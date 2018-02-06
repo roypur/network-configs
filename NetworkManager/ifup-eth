@@ -50,7 +50,8 @@ if [ "${TYPE}" = "Bridge" ]; then
     if [ ! -d /sys/class/net/${DEVICE}/bridge ]; then
         /sbin/ip link add ${DEVICE} type bridge || exit 1
     fi
-
+    echo -n 0 > /sys/class/net/${DEVICE}/bridge/multicast_snooping
+    
     # add the bits to setup driver parameters here
     for arg in $BRIDGING_OPTS ; do
         key=${arg%%=*};
@@ -178,6 +179,8 @@ if [ -n "${BRIDGE}" ] && [ -x /sbin/ip ]; then
         value=${arg##*=};
         echo $value > /sys/class/net/${DEVICE}/brport/$key
     done
+    echo -n 0 > /sys/class/net/${DEVICE}/bridge/multicast_snooping
+    
     # Upon adding a device to a bridge,
     # it's necessary to make radvd reload its config
     [ -r /run/radvd/radvd.pid ] && kill -HUP $(cat /run/radvd/radvd.pid)
