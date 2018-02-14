@@ -1,0 +1,15 @@
+table inet filter {
+    chain input {
+        type filter hook input priority 0; policy drop;
+        ct state established,related accept
+        ct state invalid drop
+        meta nfproto ipv4 icmp type echo-request accept
+        meta nfproto ipv6 icmpv6 type {nd-neighbor-advert,nd-neighbor-solicit,nd-router-advert,echo-request} accept
+        iifname lo accept
+        tcp dport 22 accept
+    }
+
+    chain output {
+        type filter hook output priority 0; policy accept;
+    }
+}
