@@ -9,6 +9,6 @@ then
     ${PREFIX} delete dhcpv6-pd duid 
     ${PREFIX} renew dhcpv6-pd interface eth0
 else
-    print "IPv6 detected"
+    echo "IPv6 detected"
 fi
     
